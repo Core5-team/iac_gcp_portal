@@ -5,6 +5,7 @@
 This repository contains a Terraform-based infrastructure setup for deploying applications on Google Cloud Platform (GCP).
 
 It includes:
+
 - Cloud Run service deployment
 - Global HTTPS Load Balancer
 - Google Cloud DNS integration
@@ -15,9 +16,11 @@ It includes:
 Everything is modular. Each folder represents a separate Terraform module responsible for a specific part of the infrastructure.
 
 ## Repository Structure
-#### ```/modules```
+
+#### `/modules`
 
 Contains reusable Terraform modules:
+
 - cloud_run – deploys a Cloud Run service
 - artifact_registry – creates Docker/OCI repositories
 - dns – creates DNS zones and records
@@ -25,27 +28,27 @@ Contains reusable Terraform modules:
 - iam – service accounts and IAM roles
 - cloud_build – Cloud Build triggers
 
-
 ## How to Run
+
 1. Clone the repository
-```git clone https://github.com/Core5-team/iac_gcp_portal.git```
-```cd iac_gcp_portal```
+   `git clone https://github.com/Core5-team/iac_gcp_portal.git`
+   `cd iac_gcp_portal`
 
 2. Install Google Cloud SDK
 
 Follow the official instructions: https://docs.cloud.google.com/sdk/docs/install-sdk
 
 After installation:
-```gcloud init```
-```gcloud auth login```
-```gcloud auth application-default login```
+`gcloud init`
+`gcloud auth login`
+`gcloud auth application-default login`
 
 3. Create a GCP Project
 
 You can do this in the console, or via CLI:
 
-```gcloud projects create <project-id>```
-```gcloud config set project <project-id>```
+`gcloud projects create <project-id>`
+`gcloud config set project <project-id>`
 
 4. Enable required APIs
 
@@ -53,6 +56,7 @@ These are the APIs needed for this infrastructure.
 You can enable them manually in the GCP Console or via CLI.
 
 Required APIs:
+
 - analyticshub.googleapis.com
 - artifactregistry.googleapis.com
 - bigquery.googleapis.com
@@ -89,23 +93,26 @@ Required APIs:
 
 5. Configure Cloud Build
 
-  5.1 Go to Cloud Build → Repositories
-  5.2 Add your git repository
-  5.3 Authenticate when prompted
+   5.1 Go to Cloud Build → Repositories
+   5.2 Add your git repository
+   5.3 Authenticate when prompted
 
 This repo must contain :
-- ```cloudbuild.yaml```
+
+- `cloudbuild.yaml`
 - The application source code and Dockerfile
 
 6. Configure terraform.tfvars
 
 Inside your cloned repo in root, you must set the required variables:
+
 ```
 project_id    = "<your-project-id>"
 domain        = "<your-domain.xy.com>"
 git_repo_name = "<git-repo-name>" # If you decide to use our repo, you should paste it:"Core5-team/portal_frontend"
 git_branch    = "<git-repo-branch>" # If you decide to use our repo, you should paste it:"main"
 ```
+
 **Important requirements:**
 
 - Your domain must already exist and you must own it. GCP will create the DNS zone, but it does NOT register domains.
@@ -118,13 +125,13 @@ Only after NS records propagate, Cloud DNS and the Load Balancer will work corre
 
 Inside of the root of repo:
 
-```terraform init```
-```terraform plan```
-```terraform apply```
+`terraform init`
+`terraform plan`
+`terraform apply`
 
 To destroy:
 
-```terraform destroy```
+`terraform destroy`
 
 ### What this infrastructure does
 
@@ -138,4 +145,3 @@ When deployed, it creates:
 - Cloud Build pipeline for automatic deployments
 - All necessary IAM permissions
 - All required backend services (NEG, URL map, HTTPS proxy, certificates)
-

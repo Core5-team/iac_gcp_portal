@@ -1,5 +1,29 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": []
+  "words": [
+    "allpaths",
+    "analyticshub",
+    "artifactregistry",
+    "certificatemanager",
+    "certmap",
+    "certmgr",
+    "cloudapis",
+    "cloudbuild",
+    "cloudresourcemanager",
+    "cloudtrace",
+    "containerregistry",
+    "dataform",
+    "dataplex",
+    "googledomains",
+    "iamcredentials",
+    "knative",
+    "oslogin",
+    "rrdatas",
+    "servicemanagement",
+    "servicenetworking",
+    "serviceusage",
+    "tfvars",
+    "urlmap"
+  ]
 }
